@@ -56,3 +56,13 @@ exports.evaluate = (poly, x) => {
   }
   return semantics(match).eval()(x);
 }
+
+if (!module.parent) {
+  let match = grammar.match(process.argv[2]);
+  if (match.succeeded()) {
+    console.log(semantics(match).deriv());
+  } else {
+    console.error(match.message);
+    process.exitCode = 1;
+  }
+}
