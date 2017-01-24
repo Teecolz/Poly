@@ -31,10 +31,10 @@ const semantics = grammar.createSemantics().addOperation('deriv', {
   Poly_add(p, op, t) {return x => p.eval()(x) + t.eval()(x);},
   Poly_subtract(p, op, t) {return x => p.eval()(x) - t.eval()(x);},
   Poly_negate(_, p) {return x => -p.eval()(x);},
-  term_coeff_var_exp(c, _, e) {return x => c.value * x ** e.value;},
+  term_coeff_var_exp(c, _, e) {return x => c.value * Math.pow(x, e.value);},
   term_coeff_var(c, _) {return x => c.value * x;},
   term_coeff(c) {return x => c.value;},
-  term_var_exp(_, e) {return x => x ** e.value;},
+  term_var_exp(_, e) {return x => Math.pow(x, e.value);},
   term_var(_) {return x => x;},
 }).addAttribute('value', {
   coefficient(whole, dot, fraction) {return +this.sourceString;},
