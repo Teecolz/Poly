@@ -58,9 +58,10 @@ exports.evaluate = (poly, x) => {
 }
 
 if (!module.parent) {
-  let match = grammar.match(process.argv[2]);
+  let func = process.argv[2];
+  let match = grammar.match(process.argv[3]); //[3] is the polynomial
   if (match.succeeded()) {
-    console.log(semantics(match).deriv());
+    func == "eval" ? console.log(semantics(match).eval()(process.argv[4])) : console.log(semantics(match).deriv());
   } else {
     console.error(match.message);
     process.exitCode = 1;
